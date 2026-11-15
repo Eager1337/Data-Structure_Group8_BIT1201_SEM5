@@ -1,5 +1,21 @@
 # DCOMP320 — Data Structures and Algorithm Final Project
 
+**New to the project? Read [START_HERE.md](START_HERE.md) first.** It explains each
+exercise in plain language and shows how to run the program.
+
+## Quick links
+
+- [Beginner walkthrough](START_HERE.md)
+- [Read the full report with diagrams](project.report/report-portable.md)
+- [Printable report PDF](project.report/report.pdf)
+- [Download the complete submission ZIP](https://github.com/Eager1337/dcomp320-final-project/blob/main/submission/DCOMP320_Complete_Project.zip)
+- [Presentation preparation](PRESENTATION_NOTES.md)
+
+Repository: https://github.com/Eager1337/dcomp320-final-project (private).
+The Python source, report, tests, diagrams, screenshots and submission ZIP have
+been uploaded. Your real names/IDs, lecturer collaborator invitation, printing
+and individual presentation still need to be completed.
+
 Limkokwing University of Creative Technology, Sierra Leone.
 Semester shown in brief: September 2026–February 2027.
 Lecturer: Amandus Benjamin Coker.
@@ -60,8 +76,8 @@ file-format size. At 96 bits, payload occupies 12 packed bytes with no padding.
 Names and IDs must be filled in by the real group members before submission.
 Use this as a worked implementation and study resource; disclose assistance as
 your university requires and ensure every member can explain their own work.
-GitHub publication, inviting the lecturer and printing are user-side actions;
-the package does not claim those actions have been completed.
+GitHub publication is complete. The lecturer has not been invited and the report
+has not been printed; those actions require the group's follow-through.
 
 ## Optional report regeneration
 

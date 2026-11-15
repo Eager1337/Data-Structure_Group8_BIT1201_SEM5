@@ -15,12 +15,17 @@
 
 ## GitHub soft-copy submission
 
-This package has not been uploaded to a GitHub account and no invitation has been sent.
+The project and complete submission ZIP have been uploaded to the private repository
+https://github.com/Eager1337/dcomp320-final-project. No lecturer invitation has been sent.
 The brief requires Python code and a report in a ZIP via GitHub, with the lecturer
 added as a collaborator. Publishing publicly may expose assessment work; use a
 private repository unless your lecturer requires otherwise.
 
 ### Browser method
+
+Steps 1–4 below are already complete for the repository above. Continue with
+the lecturer invitation and submitting the repository link. The full instructions
+are retained in case you need to create another copy later.
 
 1. Sign in to your own GitHub account.
 2. Create a repository, for example `dcomp320-final-project`, preferably private.

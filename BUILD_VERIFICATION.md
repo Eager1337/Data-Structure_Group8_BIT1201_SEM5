@@ -17,6 +17,9 @@ Verified on 14 November 2026 in Python 3.13.5.
   removes a one-line overflow and keeps captions with figures.
 - Full execution and test transcripts are in `outputs/`.
 
-These are software/build checks, not a claim of university submission. Actual
-names/IDs, GitHub publishing, lecturer invitation, printing and the presentation
-remain the group's responsibility.
+GitHub repository creation and project upload are complete:
+https://github.com/Eager1337/dcomp320-final-project (private).
+
+These are software/build and repository checks, not a claim of university
+submission. Actual names/IDs, lecturer invitation, submitting the repository link,
+printing and the presentation remain the group's responsibility.
