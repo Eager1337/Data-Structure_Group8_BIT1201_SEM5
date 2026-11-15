@@ -1,0 +1,896 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html lang="en">
+
+<head>
+
+<link rel="apple-touch-icon" href="https://algs4.cs.princeton.edu/apple-touch-icon.png"></link>
+<link rel="shortcut icon"    href="https://algs4.cs.princeton.edu/favicon.ico"></link>
+
+<!--
+<link href="https://fonts.googleapis.com/css?family=Inconsolata" rel="stylesheet">
+-->
+
+<link rel="stylesheet" href="https://algs4.cs.princeton.edu/css/algs4.css" type="text/css" media="screen"></link>
+
+<!--
+<meta name="google-site-verification" content="nYspbl5bNBQrNZKguiAAFTMVM7sq2P1WQYc8Oi6Okl0" />
+<meta name="msvalidate.01" content="D4B7F6DF793EFF34DE96F611C2A367A5" />
+-->
+
+<!-- IE HACKS -->
+<!--[if IE]>
+<style type="text/css" media="screen">
+ #menu ul li {float: left; width: 100%;}
+</style>
+<![endif]-->
+<!--[if lt IE 7]>
+<style type="text/css" media="screen">
+body {
+behavior: url(/csshover.htc);
+} 
+#menu ul li {float: left; width: 100%;}
+#menu ul li a {height: 1%;} 
+
+#menu a, #menu h2 {
+font: bold 0.9em/1.5em arial, helvetica, sans-serif;
+} 
+
+</style>
+<![endif]-->
+
+
+
+<title>
+Minimum Spanning Trees</title>
+
+<META HTTP-EQUIV="Content-Type" content="text/html; charset=iso-8859-1">
+<META NAME="AUTHOR" CONTENT="Robert Sedgewick and Kevin Wayne">
+<META NAME="KEYWORDS" CONTENT="Minimum Spanning Trees,Algorithms,4th edition,data structures,Java,intro,introduction,Sedgewick,Wayne">
+<META NAME="DESCRIPTION" CONTENT="The textbook Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne surveys the most important algorithms and data structures in use today. The broad perspective taken makes it an appropriate introduction to the field.">
+<META NAME="TITLE" CONTENT="Minimum Spanning Trees. Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne.">
+<META NAME="ROBOTS" CONTENT="INDEX,FOLLOW">
+
+<!-- <script type="text/javascript" src="https://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script> -->
+<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+
+<script type='text/javascript' src='/media/swfobject.js'></script>
+
+<!--
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-10811519-2', 'auto');
+  ga('send', 'pageview');
+</script>
+-->
+
+</head>
+
+<body>
+
+<div id = "menu">
+<div align="center">
+<a class = picture href = "https://algs4.cs.princeton.edu">
+<img src="https://algs4.cs.princeton.edu/cover.png" width=189 height=236 border=0 alt = "Algorithms, 4th Edition by Robert Sedgewick and Kevin Wayne">
+</a>  
+</div>
+
+
+
+
+
+<ul>
+  <li><a class = title href = "https://algs4.cs.princeton.edu">Algorithms, 4th edition</a>
+
+<ul>
+
+
+      <li> <a href = "/10fundamentals">1.&nbsp;&nbsp;Fundamentals</a>
+        <ul>
+          <li> <a href = "/11model">1.1&nbsp;&nbsp;Programming Model</a>
+          <li> <a href = "/12oop">1.2&nbsp;&nbsp;Data Abstraction</a>
+          <li> <a href = "/13stacks">1.3&nbsp;&nbsp;Stacks and Queues</a>
+          <li> <a href = "/14analysis">1.4&nbsp;&nbsp;Analysis of Algorithms</a>
+          <li> <a href = "/15uf">1.5&nbsp;&nbsp;Case Study: Union-Find</a>
+        </ul>
+
+      <li> <a href = "/20sorting">2.&nbsp;&nbsp;Sorting</a>
+        <ul>
+          <li> <a href = "/21elementary">2.1&nbsp;&nbsp;Elementary Sorts</a>
+          <li> <a href = "/22mergesort">2.2&nbsp;&nbsp;Mergesort</a>
+          <li> <a href = "/23quicksort">2.3&nbsp;&nbsp;Quicksort</a>
+          <li> <a href = "/24pq">2.4&nbsp;&nbsp;Priority Queues</a>
+          <li> <a href = "/25applications">2.5&nbsp;&nbsp;Sorting Applications</a>
+        </ul>
+
+      <li> <a href = "/30searching">3.&nbsp;&nbsp;Searching</a>
+        <ul>
+          <li> <a href = "/31elementary">3.1&nbsp;&nbsp;Symbol Tables</a>
+          <li> <a href = "/32bst">3.2&nbsp;&nbsp;Binary Search Trees</a>
+          <li> <a href = "/33balanced">3.3&nbsp;&nbsp;Balanced Search Trees</a>
+          <li> <a href = "/34hash">3.4&nbsp;&nbsp;Hash Tables</a>
+          <li> <a href = "/35applications">3.5&nbsp;&nbsp;Searching Applications</a>
+        </ul>
+
+      <li> <a href = "/40graphs">4.&nbsp;&nbsp;Graphs</a>
+        <ul>
+          <li> <a href = "/41graph">4.1&nbsp;&nbsp;Undirected Graphs</a>
+          <li> <a href = "/42digraph">4.2&nbsp;&nbsp;Directed Graphs</a>
+          <li> <a href = "/43mst">4.3&nbsp;&nbsp;Minimum Spanning Trees</a>
+          <li> <a href = "/44sp">4.4&nbsp;&nbsp;Shortest Paths</a>
+        </ul>
+
+      <li> <a href = "/50strings">5.&nbsp;&nbsp;Strings</a>
+        <ul>
+          <li> <a href = "/51radix">5.1&nbsp;&nbsp;String Sorts</a>
+          <li> <a href = "/52trie">5.2&nbsp;&nbsp;Tries</a>
+          <li> <a href = "/53substring">5.3&nbsp;&nbsp;Substring Search</a>
+          <li> <a href = "/54regexp">5.4&nbsp;&nbsp;Regular Expressions</a>
+          <li> <a href = "/55compression">5.5&nbsp;&nbsp;Data Compression</a>
+        </ul>
+
+      <li> <a href = "/60context">6.&nbsp;&nbsp;Context</a>
+        <ul>
+          <li> <a href = "/61event">6.1&nbsp;&nbsp;Event-Driven Simulation</a>
+          <li> <a href = "/62btree">6.2&nbsp;&nbsp;B-trees</a>
+          <li> <a href = "/63suffix">6.3&nbsp;&nbsp;Suffix Arrays</a>
+          <li> <a href = "/64maxflow">6.4&nbsp;&nbsp;Maxflow</a>
+          <li> <a href = "/65reductions">6.5&nbsp;&nbsp;Reductions</a>
+          <li> <a href = "/66intractability">6.6&nbsp;&nbsp;Intractability</a>
+        </ul>
+    </ul>
+
+
+
+
+<li><a class = title> Related Booksites</a>
+<table width = 100% border = 0 cellspacing = 0 cellpadding = 0>
+<tr>
+<td align = center>
+<a class = booksite href = "https://introcs.cs.princeton.edu">
+   <img src = "https://introcs.cs.princeton.edu/java/cover.png"
+        width = 80 height = 108 border=0
+        alt = "Introduction to Programming in Java
+               by Robert Sedgewick and Kevin Wayne">
+</a>
+<td align = center>
+<a class = booksite href = "https://aofa.cs.princeton.edu">
+   <img src = "https://algs4.cs.princeton.edu/cover-analysis-of-algorithms.png"
+        width = 81 height = 108 border=0
+        alt = "An Introduction to the Analysis of Algorithms by Robert Sedgewick and Philippe Flajolet">
+</a>
+</tr>
+</table>
+
+<li><a class = title>Web Resources</a>
+
+  <ul>
+      <li> <a href = "/faq">FAQ</a>
+      <li> <a href = "https://introcs.cs.princeton.edu/java/data">Data</a>
+      <li> <a href = "/code">Code</a>
+      <li> <a href = "/errata">Errata</a>
+      <li> <a href = "/lectures">Lectures</a>
+      <li> <a href = "/cheatsheet">Cheatsheet</a>
+      <li> <a href = "/references">References</a>
+      <li> <a href = "https://www.coursera.org/learn/algorithms-part1" target="_blank">Coursera MOOCs</a>
+        <ul>
+          <li> <a href = "https://www.coursera.org/learn/algorithms-part1" target="_blank">Algorithms, Part I</a>
+          <li> <a href = "https://www.coursera.org/learn/algorithms-part2" target="_blank">Algorithms, Part II</a>
+        </ul>
+      <li> <a href = "https://www.cubits.ai/collections/115" target="_blank">Certificate Courses</a>
+        <ul>
+          <li> <a href = "https://www.cubits.ai/collections/115" target="_blank">Algorithms, Part I</a>
+          <li> <a href = "https://www.cubits.ai/collections/117" target="_blank">Algorithms, Part II</a>
+        </ul>
+
+      <li> <a href = "https://www.coursera.org/learn/algorithms-part1/" target="_blank">Online Course</a>
+      <li> <a href = "https://introcs.cs.princeton.edu/java/assignments">Programming Assignments</a>
+  </ul>
+
+</ul>
+</ul>
+
+<p><br>
+
+<!--
+<script>
+  (function() {
+    var cx = '005649317310637734940:s7fqljvxwfs';
+    var gcse = document.createElement('script');
+    gcse.type = 'text/javascript';
+    gcse.async = true;
+    gcse.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') +
+        '//www.google.com/cse/cse.js?cx=' + cx;
+    var s = document.getElementsByTagName('script')[0];
+    s.parentNode.insertBefore(gcse, s);
+  })();
+</script>
+<gcse:searchbox-only></gcse:searchbox-only>
+
+<p><br>
+-->
+
+
+
+
+</div>
+
+
+<div id = "content">
+<H1>4.3 &nbsp; Minimum Spanning Trees</H1>
+
+<p><br>
+
+<h2>Minimum spanning tree.</h2>
+An <em>edge-weighted graph</em> is a graph where we
+associate <em>weights</em> or <em>costs</em> with each edge.
+A <em>minimum spanning tree (MST)</em> of an edge-weighted graph
+is a spanning tree whose weight (the sum of the weights of its edges)
+is no larger than the weight of any other spanning tree.
+
+<p>
+<center>
+<img src = "images/mst.png" alt = "Minimum spanning tree">
+</center>
+<p>
+
+
+<p><h2>Assumptions.</h2>
+To streamline the presentation, we adopt the following conventions:
+
+<ul>
+
+<li> <em>The graph is connected.</em>
+The spanning-tree condition in our definition implies that the graph
+must be connected for an MST to exist.
+If a graph is not connected, we can adapt our algorithms to compute
+the MSTs of each of its connected components, collectively known as a
+<em>minimum spanning forest</em>.
+
+<li> <em>The edge weights are not necessarily distances.</em>
+Geometric intuition is sometimes beneficial, but the edge weights
+can be arbitrary.
+
+<li><em> The edge weights may be zero or negative.</em>
+If the edge weights are all positive, it suffices to define the MST as
+the subgraph with minimal total weight that connects all the vertices.
+
+<li><em>The edge weights are all different.</em>
+If edges can have equal weights, the minimum spanning tree may not be unique.
+Making this assumption simplifies some of our proofs, but all of our 
+our algorithms work properly even in the presence of equal weights.
+
+</ul>
+
+
+
+<p><h2>Underlying principles.</h2>
+We recall two of the defining properties of a tree:
+<ul>
+
+<li> Adding an edge that connects two vertices in a tree creates a
+unique cycle.
+
+<li> Removing an edge from a tree breaks it into two separate
+subtrees.
+
+</ul>
+
+<p>
+<center>
+<img src = "images/tree-add-edge.png" alt = "Adding an edge to a spanning tree">
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<img src = "images/tree-remove-edge.png" alt = "Removing an edge from a spanning tree">
+
+</center>
+<p>
+<br>
+
+A <em>cut</em> of a graph is a partition of its vertices into two
+disjoint sets. A <em>crossing edge</em> is an edge that connects a vertex
+in one set with a vertex in the other.
+
+
+We recall For simplicity, we assume all edge weights are distinct.
+Under this assumption, the MST is unique.
+Define cut and cycle.
+The following properties lead to a number of MST algorithms.
+
+<p><h3>Proposition. (Cut property)</h3>
+Given any cut in an edge-weighted graph (with all edge weights
+distinct),
+the crossing edge of minimum weight is in the MST of the graph.
+
+
+<p>
+<center>
+<img src = "images/cut-property.png" alt = "Cut property">
+</center>
+<p>
+<br>
+
+
+
+The cut property is the basis for the algorithms that we consider for
+the MST problem. Specifically, they are special cases of the
+<em>greedy algorithm</em>.
+
+
+<p><h3>Proposition. (Greedy MST algorithm)</h3>
+The following method colors black all edges in the the MST of any
+connected edge-weighted graph with V vertices: Starting with all edges colored 
+gray, find a cut with no black edges, color its minimum-weight edge
+black, and continue until V-1 edges have been colored black.
+
+
+<p>
+<center>
+<img src = "images/mst-greedy.png" alt = "Greedy algorithm for the
+minimum spanning tree problem">
+</center>
+<p>
+<br>
+
+
+
+<p><h2>Edge-weighted graph data type.</h2>
+We represent the weighted edges using the following API:
+
+<p>
+<center>
+<img src = "images/edge-api.png" alt = "API for a weighted edge">
+</center>
+<p>
+<br>
+
+The <tt>either()</tt> and <tt>other()</tt> methods are useful
+for accessing the edge's vertices; the <tt>compareTo()</tt> method
+compares edges by weight.
+<a href = "Edge.java.html">Edge.java</a> is a straightforward
+implementation.
+
+
+<p>
+We represent edge-weighted graphs using the following API:
+
+<p>
+<center>
+<img src = "images/edge-weighted-graph-api.png" alt = "API for an
+edge-weighted graph">
+</center>
+<p>
+<br>
+
+We allow parallel edges and self-loops.
+<a href = "EdgeWeightedGraph.java.html">EdgeWeightedGraph.java</a>
+implements the API using the adjacency-lists representation.
+
+<p>
+<center>
+<img width = 550 src = "images/edge-weighted-graph-representation.png" alt = "edge-weighted graph representation">
+</center>
+<p>
+<br>
+
+<p><h2>MST API.</h2>
+We use the following API for computing an MST of an edge-weighted
+graph:
+
+<p>
+<center>
+<img src = "images/mst-api.png" alt = "API for MST implementations">
+</center>
+<p>
+<br>
+
+We prepare some test data:
+<ul>
+<li>
+<a href = "tinyEWG.txt">tinyEWG.txt</a>
+contains 8 vertices and 16 edges
+<li>
+<a href = "mediumEWG.txt">mediumEWG.txt</a>
+contains 250 vertices and 1,273 edges
+<li>
+<a href = "1000EWG.txt">1000EWG.txt</a>
+contains 1,000 vertices and 8,433 edges
+<li>
+<a href = "10000EWG.txt">10000EWG.txt</a>
+contains 10,000 vertices and 61,731 edges
+<li>
+<a href = "largeEWG.txt">largeEWG.txt</a>
+contains one million vertices and 7,586,063 edges
+</ul>
+
+
+
+
+<p><h2>Prim's algorithm.</h2>
+Prim's algorithm works by attaching a new edge to a single growing tree 
+at each step:
+Start with any vertex as a single-vertex tree; then add V-1 edges to
+it, always taking next (coloring black) the minimum-weight edge that
+connects a vertex on the tree to a vertex not yet on the tree
+(a crossing edge for the cut defined by tree vertices).
+
+
+<p>
+<center>
+<img src = "images/prim.png" alt = "Prim's MST algorithm">
+</center>
+<p>
+<br>
+
+The one-sentence description of Prim's algorithm leaves unanswered a
+key question: How do we (efficiently) find the crossing edge of
+minimal weight?
+
+<ul>
+
+<li><em>Lazy implementation.</em>
+We use a priority queue to hold the
+crossing edges and find one of minimal weight.
+Each time that we add an edge to the tree, we also add a vertex to the
+tree. To maintain the set of crossing edges,
+we need to add to  the priority queue all edges from that vertex to
+any non-tree vertex.
+But we must do more: any edge connecting the
+vertex just  added to a tree vertex that is already on the priority queue now
+becomes <em>ineligible</em> (it is no longer a crossing edge because
+it connects two tree vertices).
+The lazy implementation leaves such edges on the priority
+queue, deferring the ineligibility test to when we remove them.
+
+<p>
+<a href = "LazyPrimMST.java.html">LazyPrimMST.java</a> is an
+implementation of this lazy approach. It relies on the 
+<a href = "MinPQ.java.html">MinPQ.java</a> priority queue.
+
+<p>
+<center>
+<img src = "images/prim-lazy.png" alt = "Prim's algorithm (lazy implementation)
+for the minimum spanning tree problem">
+</center>
+<p>
+<br>
+
+<li><em>Eager implementation.</em>
+To improve the lazy implementation of Prim's algorithm, we might try 
+to delete ineligible edges from the priority queue, so that the
+priority queue contains only the crossing edges.
+But we can eliminate even more edges. The key is to note that our
+only interest is in the <em>minimal</em> edge 
+from each non-tree vertex to a tree vertex. When we add a vertex v to
+the tree, the only 
+possible change with respect to each non-tree vertex w is that adding
+v brings w closer 
+than before to the tree. In short, we do not need to keep on the
+priority queue all of the 
+edges from w to vertices tree&mdash;we just need to keep track of the
+minimum-weight edge 
+and check whether the addition of v to the tree necessitates that we
+update that minimum (because of an edge v-w that has lower weight),
+which we can do as we process 
+each edge in s adjacency list. In other words, we maintain on the
+priority queue just 
+one edge for each non-tree vertex: the shortest edge that connects it
+to the tree. 
+
+<p>
+<center>
+<img src = "images/prim-eager.png" alt = "Prim's algorithm (eager implementation)
+for the minimum spanning tree problem">
+</center>
+<p>
+<br>
+
+<p>
+<a href = "PrimMST.java.html">PrimMST.java</a> is an implementation
+of this eager approach. It relies on the 
+<a href = "IndexMinPQ.java.html">IndexMinPQ.java</a> indexed priority
+queue to perform the <em>decrease-key</em> operation.
+
+</ul>
+
+
+
+<p><h3>Proposition.</h3>
+Prim's algorithm computes the MST of any connected edge-weighted graph.
+The lazy version of Prim's algorithm uses space proportional to E and
+time proportional to E log E (in the worst case) to compute the MST
+of a connected edge-weighted graph with E edges and V vertices;
+the eager version uses space proportional to V and time proportional
+to E log V (in the worst case).
+
+
+<p><br>
+<p><h2>Kruskal's algorithm.</h2>
+Kruskal's algorithm processes the edges in order of their 
+weight values (smallest to largest), taking for the MST (coloring black)
+each edge that does not form a cycle with edges previously added,
+stopping after adding V-1 edges.
+The black edges form a forest of trees that evolves gradually into a single tree,
+the MST. 
+
+
+<p>
+<center>
+<img src = "images/kruskal.png" alt = "Kruskal's algorithm for the minimum spanning tree problem">
+</center>
+<p>
+<br>
+
+To implement Kruskal's algorithm, we use a priority queue to consider the edges
+in order by weight, a union-find data structure to identify those that cause 
+cycles, and a queue to collect the MST edges.
+Program <a href = "KruskalMST.java.html">KruskalMST.java</a>
+implements Kruskal's algorithm along these lines. It uses the helper 
+<a href = "MinPQ.java.html">MinPQ.java</a>,
+<a href = "UF.java.html">UF.java</a>, and
+<a href = "Queue.java.html">Queue.java</a> data types.
+
+<p><h3>Proposition.</h3>
+Kruskal's algorithm computes the MST of any connected edge-weighted graph
+with E edges and V vertices using extra space
+proportional to E and time proportional to E log E (in the worst case).
+
+<p><h3>Visualizations.</h3>
+Here are visualizations of Kruskal's algorithm (left) 
+and Prim's algortihm (right) on a Euclidean graph
+with 500 vertices.
+
+<p>
+<blockquote>
+<video controls="controls" width="400"
+       name="Kruskal's algorithm"
+       src="media/Kruskal500.mov">
+Your browser does not support the video tag.
+</video>
+<video controls="controls" width="400"
+       name="Prim's algorithm"
+       src="media/Prim500.mov">
+Your browser does not support the video tag.
+</video>
+
+</blockquote>
+
+
+<p><br>
+
+<H4>Exercises</H4>
+
+<ol>
+
+
+<a name = "Ex4.3.1"></a>
+<li value = 1>
+Prove that you can rescale the weights by adding a positive 
+constant to all of them or by multiplying them all by a positive constant
+without affecting the MST.
+
+<p><em>Solution.</em>
+Kruskal's algorithm accesses the edge weights only through the <tt>compareTo()</tt>
+method. Adding a positive constant to each weight (or multiplying by a positive
+constant) won't change the result of the <tt>compareTo()</tt> method.
+
+<a name = "Ex4.3.3"></a>
+<li value = 3>
+Show that if a graph's edges all have distinct weights, the MST is unique.
+
+<p>
+<em>Solution.</em>
+For the sake of contradiction, suppose there are two different MSTs of G,
+say T1 and T2.
+Let e = v-w be the min weight edge of G that is in one of T1 or T2, but not both.
+Let's suppose e is in T1.
+Adding e to T2 creates a cycle C. There is at least one edge, say f,
+in C that is not in T1 (otherwise T1 would be cyclic). By our choice of e, w(e) &le; w(f).
+Since all of the edge weights are distinct, w(e) < w(f). Now, replacing
+f with e in T2 yields a new spanning tree with weight less than that of T2
+(contradicting the minimality of T2).
+
+
+
+<a name = "Ex4.3.7"></a>
+<li value = 7>
+How would you find a maximum spanning tree of an edge-weighted graph?
+<p><em>Solution.</em> Negative the weight of each edge (or reverse
+the sense of comparison in the <tt>compareTo()</tt> method).
+
+
+<a name = "Ex4.3.9"></a>
+<li value = 9>
+Implement the constructor for
+<a href = "EdgeWeightedGraph.java.html">EdgeWeightedGraph.java</a>
+that reads an edge-weighted graph from an input stream.
+
+
+<a name = "Ex4.3.11"></a>
+<li value = 11>
+Determine the amount of memory used by 
+<a href = "EdgeWeightedGraph.java.html">EdgeWeightedGraph.java</a>
+to represent a graph with V vertices and E edges, using the memory-cost model
+of Section 1.4.
+
+<p><em>Solution.</em>
+56 + 40V + 112E.
+<a href = "MemoryOfEdgeWeightedGraph.java.html">MemoryOfEdgeWeightedGraph.java</a>
+computes it empirically assuming that no <tt>Integer</tt> values are cached&mdash;Java
+typically caches the integers -128 to 127.
+
+
+<a name = "Ex4.3.14"></a>
+<li value = 14>
+Given an MST for an edge-weighted graph G, suppose that an edge in G
+that does not disconnect G is deleted.
+Describe how to find an MST of the new graph in time proportional to E.
+
+<p><em>Solution.</em> 
+If the edge in not in the MST, then the old MST is an MST of the updated graph.
+Otherwise, deleting the edge from the MST leaves two connected components.
+Add the minimum weight edge with one vertex in each component.
+
+<li value = 15>
+Given an MST for an edge-weighted graph G 
+and a new edge e, describe how to find an MST of the new graph in time proportional to V.
+
+<p><em>Solution.</em>
+Add edge e to the MST creates a unique cycle.
+Delete the maximum weight edge on this cycle.
+
+<a name = "Ex4.3.17"></a>
+<li value = 17>
+Implement <tt>toString()</tt> for
+<a href = "EdgeWeightedGraph.java.html">EdgeWeightedGraph.java</a>.
+
+<a name = "Ex4.3.19"></a>
+<li value = 19>
+Suppose that you implement an eager version of Prim's algorithm but instead
+of using a priority queue to find the next vertex to add to the tree,
+you scan through all <tt>V</tt> entries in the <tt>distTo[]</tt> array to find
+the non-tree vertex with the smallest value.
+What would be the order of growth of the worst-case running time for the
+eager version of Prim's algorithm on graphs with V vertices and E edges?
+When would this method be appropriate, if ever? Defend your answer.
+
+<p><em>Solution.</em>
+Prim's algorithm would run in time proportional to V^2, which is optimal for
+dense graphs.
+
+<a name = "Ex4.3.21"></a>
+<li value = 21>
+Provide an implementation of <tt>edges()</tt>
+for <a href = "PrimMST.java.html">PrimMST.java</a>.
+
+</ol>
+
+
+<p>
+<H4>Creative Problems</H4>
+
+<ol>
+
+<a name = "Ex4.3.22"></a>
+<li value = 22><b>Minimum spanning forest.</b>
+Develop versions of Prim's and Kruskal's algorithms that compute 
+the minimum spanning <em>forest</em> of an edge-weighted graph that
+is not necessarily connected.
+
+<p><em>Solution.</em>
+<a href = "PrimMST.java.html">PrimMST.java</a> and
+<a href = "KruskalMST.java.html">KruskalMST.java</a>
+accomplish this.
+
+
+<a name = "Ex4.3.33"></a>
+<li value = 33><b>Certification.</b>
+Write a method <tt>check()</tt> that
+uses the following <em>cut optimality conditions</em>
+to verify that a proposed set of edges is in fact an MST:
+A set of edges is an MST if it is a spanning tree and every
+edge is a minimum-weight edge in the cut defined by removing
+that edge from the tree.
+What is the order of growth of the running time of your method?
+
+<p><em>Solution.</em>
+<a href = "KruskalMST.java.html">KruskalMST.java</a>.
+
+
+</ol>
+
+
+<p>
+<H4>Experiments</H4>
+
+<ol>
+
+<a name = "Ex4.3.43"></a>
+<p><li value = 43><b>Boruvka's algorithm.</b>
+Develop an implementation <a href = "BoruvkaMST.java.html">BoruvkaMST.java</a>
+of Boruvka's algorithm:
+Build an MST by adding edges to a growing forest of trees,
+as in Kruskal's algorithm, but in stages.
+At each stage, find the minimum-weight edge that connects each tree
+to a different one, then add all such edges to the MST.
+Assume that the edge weights are all different, to avoid cycles.
+<em>Hint</em>: Maintain in a vertex-indexed array to identify
+the edge that connects each component to its nearest neighbor,
+and use the union-find data structure.
+
+<p><em>Remark.</em>
+There are a most log V phases since number of trees decreases by
+at least a factor of 2 in each phase.
+Attractive because it is efficient and can be run in parallel.
+
+<!--
+Alternate: use union-find where each pass does the E find operations,
+then does the unions. (Takes linear time overall, prove this.)
+-->
+
+<!--
+<p>
+Can do a pass in O(E) time by using graph search to identify the connected
+components, then make one pass through the edges to find for each
+connected component, the minimum weight edge with one endpoint in
+the component.
+-->
+
+
+<!--
+<p><li><b>Improved Boruvka.</b>
+Sort the edges in each vertex's adjacency list by weight.
+This takes O(E log E) time. Show how to implement the rest of Boruvka's
+algorithm in O(E + V log V) time.
+-->
+
+</ol>
+
+
+<p>
+
+<H4>Web Exercises</H4>
+
+<ol>
+
+
+<li><b>Minimum bottleneck spanning tree.</b>
+A minimum bottleneck spanning tree of an edge-weighted graph G
+is a spanning tree of G such that minimizes the maximum weight
+of any edge in the spanning tree.
+Design an algorithm to find a minimum bottleneck spanning tree.
+
+<p><em>Solution.</em>
+Every MST is a minimum bottleneck spanning tree (but not necessarily 
+the converse). This can be proved using the cut property.
+
+<li><b>Minimum median spanning tree.</b>
+A minimum median spanning tree of an edge-weighted graph G
+is a spanning tree of G such that minimizes the median of its weights.
+Design an efficient algorithm to find a minimum median spanning tree.
+
+<p><em>Solution.</em>
+Every MST is a minimum median spanning tree (but not necessarily 
+the converse). 
+<!-- Need to argue if e1 <= e2 <= ... are the edge weights in an MST
+     and f1 <= f2 <= ... are the edge weights in any other MST, then
+     e1 <= f1, e2 <= f2, ... -->
+
+<li><b>Maze generation.</b>
+<a href = "http://en.wikipedia.org/wiki/Maze_generation_algorithm">Create a maze</a>
+using a randomized version of Kruskal or Prim's algorithm.
+
+
+<li><b>Unique MST.</b>
+Design an algorithm to determine if the MST is unique for a given graph G.
+
+
+<p><li><b>Random spanning tree.</b>
+Given a graph G, generate a spanning tree of G, uniformly at random.
+Using the following remarkable theorem of Aldous and Broder:
+Start at an arbitrary vertex s and take a random walk until every
+vertex has been visited (choosing an outgoing edge uniformly at random
+among all incident edges). If a vertex has never been visited before,
+add the edge to that vertex to the spanning tree T.
+Then T is a uniformly
+random spanning tree of G. The expected running time is bounded by the 
+<em>cover time</em> of G, which is at most proportional to EV.
+
+
+<li><b>Minimum-weight feedback edge set.</b>
+A <em>feedback edge set</em> of a graph is a subset of edges
+that contains at least one edge from every cycle in the graph.
+If the edges of a feedback edge set are removed, the resulting
+graph will be acyclic.
+Design an efficient algorithm to find a feedback edge set of minimum weight
+in an edge-weighted graph with positive edge weights.
+
+<!--
+<p><em>Hint</em>: Compute a maximum spanning tree; the remaining edges
+are the minimum-weight feedback edge set.
+-->
+
+
+
+<p><li><b>Distribution of edge weights in two MSTs.</b>
+Suppose than an edge-weighted digraph has two MSTs T1 and T2.
+Prove that if T1 has k edges of weight w, then T2 has k edges of weight w.
+
+<p><li><b>USA Computing Olympiad problem.</b>
+In a city there are N houses, each of which is in need of a water supply.
+It costs w[i] dollars to build a 
+well at house i, and it costs c[i][j] to build a pipe in between houses i and j.
+A house can receive water if either there is a well built there or there is some
+path of pipes to a house with a well.
+Design an algorithm to find the minimum amount of money needed to supply every house with water.
+-->
+
+<p><em>Solution.</em>:
+Create an edge-weighted graph with N+1 vertices (one for each house plus a source vertex x).
+Include an edge between every pair of vertices i and j with cost c[i][j] (to represent the potential pipes).
+Include an edge between the source s and every house i with cost w[i] (to represent the potential open wells).
+Find an MST in this edge-weighted graph.
+
+<p><li><b>Spanning tree with exactly k orange edges.</b>
+Given a graph with edges colored either orange or black, design a linearithmic algorithm
+to find a spanning tree that contains exactly k orange edges (or report that no such spanning 
+tree exists).
+
+<!--
+<p><em>Solution</em>: first, to determine whether such a spanning tree exists.
+Run Kruskal's algorithm with the weight of orange edges 0 and black edges 1.
+This will find a spanning tree T1 that uses a few orange edges as possible.
+Repeat with the weight of black edges 1 and orange edges 0.
+This will find a spanning tree T2 that uses as many orange edges as possible.
+If k is in between this range, then there exists a spanning tree with exactly k orange edges.
+Now to find the spanning tree, start with the k1 orange edges from T1.
+Now, repeatedly add each remaining orange edge if it decreases the number of connected
+components (until you have a total of k orange edges).
+Finally, repeatedly add each black edge if it decreases the number of connected
+components (until you have a spanning tree).
+Using union-find this takes M log*N + Ntime; using edge contraction, it can be implemented
+in M + N time.
+-->
+
+<p><li><b>Minimum variance spanning tree.</b>
+Given a connected edge weighted graph, find a minimum spanning tree that minimizes
+the variance of its edge weights.
+
+
+</ol>
+
+
+
+<br><br>
+<p class = footer>
+<em>Last modified on January 10, 2025.</em><br><br>
+Copyright &copy; 2000&ndash;2025
+<a href = "https://www.cs.princeton.edu/~rs" class = footer>Robert Sedgewick</a>
+and
+<a href = "https://www.cs.princeton.edu/~wayne" class = footer>Kevin Wayne</a>.
+All rights reserved.
+</div>
+
+
+
+
+<!--
+<script type="text/javascript">
+var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
+document.write(unescape("%3Cscript src='" + gaJsHost + "google-analytics.com/ga.js' type='text/javascript'%3E%3C/script%3E"));
+</script>
+<script type="text/javascript">
+try {
+var pageTracker = _gat._getTracker("UA-10811519-2");
+pageTracker._trackPageview();
+} catch(err) {}</script>
+-->
+
+</body>
+
+</html>
+
+ 

@@ -1,0 +1,134 @@
+TOWER OF HANOI: n=3; minimum moves=7
+Initial: {'A': [3, 2, 1], 'B': [], 'C': []}
+  1: disk 1, A -> C; {'A': [3, 2], 'B': [], 'C': [1]}
+  2: disk 2, A -> B; {'A': [3], 'B': [2], 'C': [1]}
+  3: disk 1, C -> B; {'A': [3], 'B': [2, 1], 'C': []}
+  4: disk 3, A -> C; {'A': [], 'B': [2, 1], 'C': [3]}
+  5: disk 1, B -> A; {'A': [1], 'B': [2], 'C': [3]}
+  6: disk 2, B -> C; {'A': [1], 'B': [], 'C': [3, 2]}
+  7: disk 1, A -> C; {'A': [], 'B': [], 'C': [3, 2, 1]}
+
+TREE TRAVERSALS: provided tree, labels 1..31
+Pre-order: 1 2 4 8 16 17 9 18 19 5 10 20 21 11 22 23 3 6 12 24 25 13 26 27 7 14 28 29 15 30 31
+In-order: 16 8 17 4 18 9 19 2 20 10 21 5 22 11 23 1 24 12 25 6 26 13 27 3 28 14 29 7 30 15 31
+Post-order: 16 17 8 18 19 9 4 20 21 10 22 23 11 5 2 24 25 12 26 27 13 6 28 29 14 30 31 15 7 3 1
+Level-order: 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31
+
+HUFFMAN CODING: {'a': 2, 'b': 4, 'c': 8, 'd': 16, 'e': 16}
+Merge 1: a:2 + b:4 = 6
+Merge 2: (a+b):6 + c:8 = 14
+Merge 3: ((a+b)+c):14 + d:16 = 30
+Merge 4: e:16 + (((a+b)+c)+d):30 = 46
+a: frequency=2, code=1000, contribution=8 bits
+b: frequency=4, code=1001, contribution=16 bits
+c: frequency=8, code=101, contribution=24 bits
+d: frequency=16, code=11, contribution=32 bits
+e: frequency=16, code=0, contribution=16 bits
+Demonstration message: aabbbbccccccccddddddddddddddddeeeeeeeeeeeeeeee
+Encoded message: 100010001001100110011001101101101101101101101101111111111111111111111111111111110000000000000000
+Payload length: 96 bits; packed bytes: 12
+Decoded message matches: True
+
+FIGURE 1: 12 vertices, 19 undirected edges
+Adjacency matrix (inf = no edge):
+      A   B   C   D   E   F   G   H   I   J   K   L
+  A   0 inf inf   4 inf inf inf inf inf inf inf inf
+  B inf   0   2   8 inf inf inf inf inf inf inf inf
+  C inf   2   0 inf   5 inf inf inf inf  10 inf inf
+  D   4   8 inf   0 inf   6   3   9 inf inf   6 inf
+  E inf inf   5 inf   0 inf inf   4   9   2 inf inf
+  F inf inf inf   6 inf   0   1 inf inf inf   7 inf
+  G inf inf inf   3 inf   1   0 inf inf inf   4 inf
+  H inf inf inf   9   4 inf inf   0   3 inf   6 inf
+  I inf inf inf inf   9 inf inf   3   0   7 inf inf
+  J inf inf  10 inf   2 inf inf inf   7   0 inf   1
+  K inf inf inf   6 inf   7   4   6 inf inf   0 inf
+  L inf inf inf inf inf inf inf inf inf   1 inf   0
+Dijkstra settlements and successful relaxations:
+ 1. settle A=0; D: inf->4 via A
+ 2. settle D=4; B: inf->12 via D; F: inf->10 via D; G: inf->7 via D; H: inf->13 via D; K: inf->10 via D
+ 3. settle G=7; F: 10->8 via G
+ 4. settle F=8; no improvements
+ 5. settle K=10; no improvements
+ 6. settle B=12; C: inf->14 via B
+ 7. settle H=13; E: inf->17 via H; I: inf->16 via H
+ 8. settle C=14; J: inf->24 via C
+ 9. settle I=16; J: 24->23 via I
+10. settle E=17; J: 23->19 via E
+11. settle J=19; L: inf->20 via J
+12. settle L=20; no improvements
+All shortest paths from A:
+A -> A: cost=0; A
+A -> B: cost=12; A -> D -> B
+A -> C: cost=14; A -> D -> B -> C
+A -> D: cost=4; A -> D
+A -> E: cost=17; A -> D -> H -> E
+A -> F: cost=8; A -> D -> G -> F
+A -> G: cost=7; A -> D -> G
+A -> H: cost=13; A -> D -> H
+A -> I: cost=16; A -> D -> H -> I
+A -> J: cost=19; A -> D -> H -> E -> J
+A -> K: cost=10; A -> D -> K
+A -> L: cost=20; A -> D -> H -> E -> J -> L
+Prim's MST (NOT a shortest-path algorithm):
+ 1. add A-D (4); cumulative weight=4
+ 2. add D-G (3); cumulative weight=7
+ 3. add G-F (1); cumulative weight=8
+ 4. add G-K (4); cumulative weight=12
+ 5. add K-H (6); cumulative weight=18
+ 6. add H-I (3); cumulative weight=21
+ 7. add H-E (4); cumulative weight=25
+ 8. add E-J (2); cumulative weight=27
+ 9. add J-L (1); cumulative weight=28
+10. add E-C (5); cumulative weight=33
+11. add C-B (2); cumulative weight=35
+MST total weight: 35
+
+FIGURE 2: 10 vertices, 19 undirected edges
+Adjacency matrix (inf = no edge):
+      A   B   C   D   E   F   G   H   I   J
+  A   0   2 inf  15 inf inf inf inf   9 inf
+  B   2   0   3   5  17 inf inf inf inf inf
+  C inf   3   0 inf  12  18 inf inf inf inf
+  D  15   5 inf   0   4 inf   6 inf inf inf
+  E inf  17  12   4   0  13  11   7 inf inf
+  F inf inf  18 inf  13   0 inf  14 inf inf
+  G inf inf inf   6  11 inf   0  19   8   1
+  H inf inf inf inf   7  14  19   0 inf  16
+  I   9 inf inf inf inf inf   8 inf   0   1
+  J inf inf inf inf inf inf   1  16   1   0
+Dijkstra settlements and successful relaxations:
+ 1. settle A=0; B: inf->2 via A; D: inf->15 via A; I: inf->9 via A
+ 2. settle B=2; C: inf->5 via B; D: 15->7 via B; E: inf->19 via B
+ 3. settle C=5; E: 19->17 via C; F: inf->23 via C
+ 4. settle D=7; E: 17->11 via D; G: inf->13 via D
+ 5. settle I=9; J: inf->10 via I
+ 6. settle J=10; G: 13->11 via J; H: inf->26 via J
+ 7. settle E=11; H: 26->18 via E
+ 8. settle G=11; no improvements
+ 9. settle H=18; no improvements
+10. settle F=23; no improvements
+All shortest paths from A:
+A -> A: cost=0; A
+A -> B: cost=2; A -> B
+A -> C: cost=5; A -> B -> C
+A -> D: cost=7; A -> B -> D
+A -> E: cost=11; A -> B -> D -> E
+A -> F: cost=23; A -> B -> C -> F
+A -> G: cost=11; A -> I -> J -> G
+A -> H: cost=18; A -> B -> D -> E -> H
+A -> I: cost=9; A -> I
+A -> J: cost=10; A -> I -> J
+A -> L: NOT APPLICABLE; Figure 2 contains no vertex L.
+A -> J is the demonstration destination, not a relabelled L.
+Prim's MST (NOT a shortest-path algorithm):
+ 1. add A-B (2); cumulative weight=2
+ 2. add B-C (3); cumulative weight=5
+ 3. add B-D (5); cumulative weight=10
+ 4. add D-E (4); cumulative weight=14
+ 5. add D-G (6); cumulative weight=20
+ 6. add G-J (1); cumulative weight=21
+ 7. add J-I (1); cumulative weight=22
+ 8. add E-H (7); cumulative weight=29
+ 9. add E-F (13); cumulative weight=42
+MST total weight: 42

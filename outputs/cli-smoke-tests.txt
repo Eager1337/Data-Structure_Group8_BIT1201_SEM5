@@ -1,0 +1,4 @@
+all interactive menu entries: PASS
+invalid input recovery: PASS
+zero disks: PASS
+invalid batch argument: PASS (exit status 2)

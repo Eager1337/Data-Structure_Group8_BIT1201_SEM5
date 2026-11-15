@@ -1,0 +1,24 @@
+test_all_sources_against_floyd_warshall (test_algorithms.GraphTests.test_all_sources_against_floyd_warshall) ... ok
+test_disconnected_zero_single (test_algorithms.GraphTests.test_disconnected_zero_single) ... ok
+test_exact_distances_and_targets (test_algorithms.GraphTests.test_exact_distances_and_targets) ... ok
+test_invalid_graphs (test_algorithms.GraphTests.test_invalid_graphs) ... ok
+test_matrices (test_algorithms.GraphTests.test_matrices) ... ok
+test_mst_against_kruskal (test_algorithms.GraphTests.test_mst_against_kruskal) ... ok
+test_random_connected_graphs (test_algorithms.GraphTests.test_random_connected_graphs) ... ok
+test_counts_and_legal_moves (test_algorithms.HanoiTests.test_counts_and_legal_moves) ... ok
+test_invalid (test_algorithms.HanoiTests.test_invalid) ... ok
+test_known_sequence (test_algorithms.HanoiTests.test_known_sequence) ... ok
+test_exact_codes_and_cost (test_algorithms.HuffmanTests.test_exact_codes_and_cost) ... ok
+test_invalid_inputs (test_algorithms.HuffmanTests.test_invalid_inputs) ... ok
+test_optimal_cost_by_exhaustive_lengths (test_algorithms.HuffmanTests.test_optimal_cost_by_exhaustive_lengths) ... ok
+test_prefix_free (test_algorithms.HuffmanTests.test_prefix_free) ... ok
+test_round_trip (test_algorithms.HuffmanTests.test_round_trip) ... ok
+test_single_symbol (test_algorithms.HuffmanTests.test_single_symbol) ... ok
+test_empty_single_and_skew (test_algorithms.TreeTests.test_empty_single_and_skew) ... ok
+test_exact_traversals (test_algorithms.TreeTests.test_exact_traversals) ... ok
+test_structure (test_algorithms.TreeTests.test_structure) ... ok
+
+----------------------------------------------------------------------
+Ran 19 tests in 0.008s
+
+OK
