@@ -8,6 +8,8 @@ exercise in plain language and shows how to run the program.
 - [Beginner walkthrough](START_HERE.md)
 - [Read the full report with diagrams](project.report/report-portable.md)
 - [Printable report PDF](project.report/report.pdf)
+- [Editable 14-slide PowerPoint](project.pptx-slides/presentation.pptx)
+- [Slide-by-slide speaker notes](project.pptx-slides/speaker-notes.md)
 - [Download the complete submission ZIP](https://github.com/Eager1337/dcomp320-final-project/blob/main/submission/DCOMP320_Complete_Project.zip)
 - [Presentation preparation](PRESENTATION_NOTES.md)
 
@@ -61,6 +63,10 @@ by Python's recursion limit and exponentially large output.
 - `project.report/diagrams/`: 13 exact, data-driven PNG diagrams.
 - `project.report/screenshots/`: six real terminal screenshots.
 - `PRESENTATION_NOTES.md`: demo plan, speaking notes and likely viva questions.
+- `project.pptx-slides/presentation.pptx`: 14 editable English slides; native
+  diagrams, tables, code explanations and speaker notes on every slide.
+- `project.pptx-slides/speaker-notes.md`: the same notes as readable Markdown.
+- `project.pptx-slides/generate_deck.py`: reproducible PowerPoint builder.
 - `SUBMISSION_CHECKLIST.md`: GitHub and hard-copy submission steps.
 
 ## Honest handling of the brief
@@ -98,3 +104,21 @@ xvfb-run -a -s '-screen 0 1700x1100x24' python project.report/capture_execution.
 ```
 
 The included PDF/PNGs do not require regeneration to view or print.
+
+## Optional PowerPoint regeneration
+
+The included PPTX opens directly in PowerPoint or Google Slides. Its text, shapes,
+connectors and tables are editable—not screenshots of slides. Open the Notes pane
+for beginner-friendly explanations and complete traversal/distance results.
+
+To rebuild, install `python-pptx` and the Google Slides-safe fonts Poppins, DM Sans
+and Roboto Mono. The approved preview is used as slide 7, so keep `preview.pptx`
+beside the builder. Fonts are not bundled.
+
+```bash
+python -m pip install python-pptx
+python project.pptx-slides/generate_deck.py
+```
+
+Edit the builder and regenerate, or edit the PPTX directly for your presentation.
+Add the real group names and IDs before submission.

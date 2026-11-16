@@ -73,6 +73,8 @@ or private keys. The repository URL above is an example, not an existing upload.
 
 ## Individual presentation
 
+- [ ] Open `project.pptx-slides/presentation.pptx` and add the real group details.
+- [ ] Read the Notes pane or `project.pptx-slides/speaker-notes.md` for each slide.
 - [ ] Use `PRESENTATION_NOTES.md` as a guide and adapt the speaking roles to your group.
 - [ ] Bring a working Python environment and run the demo live.
 - [ ] Explain recursion and stack behavior, all traversals, Huffman tie handling,

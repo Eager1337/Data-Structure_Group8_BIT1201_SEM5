@@ -17,6 +17,18 @@ Verified on 14 November 2026 in Python 3.13.5.
   removes a one-line overflow and keeps captions with figures.
 - Full execution and test transcripts are in `outputs/`.
 
+PowerPoint verification on 16 November 2026:
+
+- Approved design carried through a 14-slide editable English presentation.
+- Native PowerPoint objects: 565 shapes/objects, including four native tables;
+  no slide content flattened into raster pictures.
+- Speaker notes present on all 14 slides and exported to `speaker-notes.md`.
+- Deterministic precheck passed: no off-slide shapes or empty text boxes.
+- All slides rendered and visually inspected; code-panel overflow and a wrapped
+  table header corrected, then the affected slides re-rendered and inspected.
+- All 19 test methods passed again; fresh execution matched the included
+  `outputs/execution.txt` byte-for-byte.
+
 GitHub repository creation and project upload are complete:
 https://github.com/Eager1337/dcomp320-final-project (private).
 
