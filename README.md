@@ -60,12 +60,7 @@ by Python's recursion limit and exponentially large output.
   justified paragraphs, diagrams, execution screenshots and full code appendices.
 - `project.report/diagrams/`: 13 exact, data-driven PNG diagrams.
 - `project.report/screenshots/`: six real terminal screenshots.
-- `PRESENTATION_NOTES.md`: demo plan, speaking notes and likely viva questions.
-- `project.pptx-slides/presentation.pptx`: 14 editable English slides; native
-  diagrams, tables, code explanations and speaker notes on every slide.
-- `project.pptx-slides/speaker-notes.md`: the same notes as readable Markdown.
-- `project.pptx-slides/generate_deck.py`: reproducible PowerPoint builder.
-- `SUBMISSION_CHECKLIST.md`: GitHub and hard-copy submission steps.
+
 
 ## Honest handling of the brief
 
@@ -82,27 +77,4 @@ Use this as a worked implementation and study resource; disclose assistance as
 your university requires and ensure every member can explain their own work.
 GitHub publication is complete. The lecturer has not been invited and the report
 has not been printed; those actions require the group's follow-through.
-
-## Optional report regeneration
-
-The optional scripts need `matplotlib`, `Pillow` and `reportlab` (see
-`requirements-report.txt`). Fonts are NOT redistributed in this ZIP.
-For the required Tahoma PDF formatting, install your licensed Tahoma fonts and
-set `TAHOMA_REGULAR` and `TAHOMA_BOLD` to their paths if the defaults do not exist.
-
-```bash
-python project.report/charts.py
-python project.report/build_report.py
-```
-
-`capture_execution.py` additionally requires Linux, Xvfb, xterm and ImageMagick:
-
-```bash
-xvfb-run -a -s '-screen 0 1700x1100x24' python project.report/capture_execution.py
-```
-
-The included PDF/PNGs do not require regeneration to view or print.
-
-
-
 
