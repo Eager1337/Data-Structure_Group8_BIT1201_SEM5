@@ -105,10 +105,4 @@ The included PDF/PNGs do not require regeneration to view or print.
 
 
 
-```bash
-python -m pip install python-pptx
-python project.pptx-slides/generate_deck.py
-```
 
-Edit the builder and regenerate, or edit the PPTX directly for your presentation.
-Add the real group names and IDs before submission.
