@@ -62,19 +62,4 @@ by Python's recursion limit and exponentially large output.
 - `project.report/screenshots/`: six real terminal screenshots.
 
 
-## Honest handling of the brief
-
-The figures are treated as undirected because no arrowheads are shown.
-Figure 2 has vertices A..J, not L; no missing vertex is invented.
-Prim solves a minimum spanning tree problem, not the shortest-path problem.
-The Huffman input supplies frequencies, not an ordered message: the example
-message groups each symbol by its frequency only to demonstrate encoding.
-The 96-bit result excludes codebook/header costs; it is not a full compressed
-file-format size. At 96 bits, payload occupies 12 packed bytes with no padding.
-
-Names and IDs must be filled in by the real group members before submission.
-Use this as a worked implementation and study resource; disclose assistance as
-your university requires and ensure every member can explain their own work.
-GitHub publication is complete. The lecturer has not been invited and the report
-has not been printed; those actions require the group's follow-through.
 
