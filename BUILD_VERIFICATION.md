@@ -30,8 +30,16 @@ PowerPoint verification on 16 November 2026:
   `outputs/execution.txt` byte-for-byte.
 
 GitHub repository creation and project upload are complete:
-https://github.com/Eager1337/dcomp320-final-project (private).
+https://github.com/Eager1337/Data-Structure (private).
 
 These are software/build and repository checks, not a claim of university
 submission. Actual names/IDs, lecturer invitation, submitting the repository link,
 printing and the presentation remain the group's responsibility.
+PowerPoint & Viva Upgrade Verification (November 2026):
+
+- Expanded presentation to 26 slides with native Morph transitions and animations.
+- Implemented dedicated team presenter roles (Presenter 1 through Presenter 4) on all slides.
+- Added comprehensive Viva Defense section with exact proofs, edge case handling, and Big-O matrix.
+- Self-contained slide generation in `project.pptx-slides/generate_deck.py` (zero external assets needed).
+- All 19 unit test methods re-verified passing in 0.018s.
+- Active GitHub repository confirmed at https://github.com/Eager1337/Data-Structure.

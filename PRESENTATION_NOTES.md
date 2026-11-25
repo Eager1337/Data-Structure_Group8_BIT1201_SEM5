@@ -1,98 +1,84 @@
-# Individual presentation and viva preparation
+# DCOMP320 Team Presentation & Viva Defense Master Guide
 
-These are preparation notes, not a claim that a presentation has been delivered.
-Suggested duration: 8–10 minutes, adjusted to the lecturer's requirement.
-Each member should be ready to explain the whole project, not just one function.
+**Course**: DCOMP320 Data Structures and Algorithms  
+**Institution**: Limkokwing University of Creative Technology, Sierra Leone  
+**Lecturer**: Amandus Benjamin Coker  
+**Repository**: https://github.com/Eager1337/Data-Structure  
+**Slide Deck**: `project.pptx-slides/presentation.pptx` (26 Slides, Native Morph Transitions, Examiner Q&A)
 
-## Demonstration plan
+---
 
-1. **Introduction (45 seconds).** Explain the four problems and the data structures:
-   recursion/call stack, binary tree, FIFO queue, min-heap and weighted graph.
-2. **Hanoi (90 seconds).** Run menu option 1 with n=3. Show how three disks move in
-   seven steps and why a larger disk never rests on a smaller one. Explain
-   T(n)=2T(n−1)+1, hence 2^n−1.
-3. **Traversals (90 seconds).** Run option 2. On the tree diagram, distinguish
-   root-left-right, left-root-right, left-right-root and breadth-first order.
-   Use the green visitation numbers to explain the first few visits.
-4. **Huffman (90 seconds).** Run option 3. Combine 2+4=6, 6+8=14, 14+16=30 and
-   16+30=46. Show one valid codebook and compute 8+16+24+32+16=96 bits.
-5. **Graphs (2 minutes).** Run option 4. Explain the Figure 1 shortest path
-   A–D–H–E–J–L and its cost 4+9+4+2+1=20. Discuss the missing L in Figure 2 and
-   demonstrate A–I–J, cost 10. Explain why MST weights 35 and 42 are different
-   optimization targets from source-to-destination path costs.
-6. **Testing and conclusion (60 seconds).** Run the unit tests. Explain that
-   Floyd–Warshall checks Dijkstra, Kruskal checks Prim, legal-state simulation
-   checks Hanoi, and encoding/decoding plus exhaustive lengths check Huffman.
+## 1. Presentation Structure & Timing (Total: 10–12 Minutes + 5–8 Minutes Viva)
 
-## Commands to have ready
+| Section | Slides | Presenter Role | Focus & Core Takeaways |
+| :--- | :--- | :--- | :--- |
+| **01. Overview & Architecture** | Slides 1–3 | **Presenter 1** | Project scope, team role blueprint, zero-dependency Python design. |
+| **02. Tower of Hanoi** | Slides 4–7 | **Presenter 1** | Recurrence $T(n)=2T(n-1)+1=2^n-1$, Morph state glides, $O(n)$ stack. |
+| **03. Binary Tree Traversals** | Slides 8–10 | **Presenter 2** | 31-node perfect tree, 4 traversals, FIFO queue vs DFS stack memory. |
+| **04. Huffman Coding** | Slides 11–13 | **Presenter 3** | Greedy min-heap, prefix-free tree building, 96 bits vs 138 (30.4% savings). |
+| **05. Graph Optimization** | Slides 14–18 | **Presenter 4** | Dijkstra A→L=20, Figure 2 missing L anomaly, Prim MSTs (35 & 42), SPT $
+e$ MST. |
+| **06. Testing & Live Demo** | Slides 19–20 | **P4 & Team** | 19 unit tests passing, independent Floyd–Warshall & Kruskal checks, CLI. |
+| **07. Viva Defense & Q&A** | Slides 21–26 | **All Members** | Graph edge cases, BFS vs DFS queues, induction proofs, Big-O matrix, closing. |
+
+### Flexible Team Sizing Guide
+- **4 Presenters**: 1 section each (P1 Hanoi, P2 Trees, P3 Huffman, P4 Graphs; all on Viva Q&A).
+- **3 Presenters**: P1 takes Architecture & Hanoi; P2 takes Trees & Huffman; P3 takes Graphs, Testing & Viva.
+- **2 Presenters**: P1 takes Architecture, Hanoi & Trees; P2 takes Huffman, Graphs, Testing & Viva.
+
+---
+
+## 2. Live Terminal Demonstration Cheat Sheet
+
+Keep a terminal open at the project root ready for the panel:
 
 ```bash
+# 1. Interactive menu demonstration
 python main.py
+
+# 2. Automated complete batch demonstration
 python main.py --all --disks 3
+
+# 3. Run all 19 automated unit tests (runs in < 0.05s)
 python -m unittest discover -s tests -v
 ```
 
-## Likely questions and concise answers
+---
 
-**What is the Hanoi base case?** Zero disks: no moves. One disk requires a single move.
+## 3. High-Priority Examiner Viva Questions & Model Answers
 
-**How does the stack matter?** Recursive calls suspend their current work while
-the smaller subproblem runs. Peg lists also behave as LIFO stacks, using append/pop
-at the list end. The demo checks the top disk and target before each move.
+### Question 1: Why does Figure 2 not have vertex L, and how did your program handle it?
+> **Answer**: In the assignment handout, Figure 2 only contains 10 vertices ($A$ through $J$). Vertex $L$ is absent. Rather than fabricating an arbitrary vertex $L$ with fake edges or crashing, our program programmatically inspects the graph vertex set. If target $L$ is requested on Figure 2, it reports `Not Applicable / Vertex not found`. We also demonstrated the shortest path to vertex $J$ ($A 	o I 	o J$, cost 10) to verify Dijkstra on Figure 2.
 
-**Why is Hanoi exponential?** Two n−1 subproblems and one move occur at every level.
-Adding a disk roughly doubles the work: 7 moves for n=3, 15 for n=4.
+### Question 2: Why is a Shortest Path Tree (SPT) from Dijkstra NOT a Minimum Spanning Tree (MST)?
+> **Answer**: Dijkstra minimizes the distance from a **single source** to each individual vertex ($O((V+E)\log V)$). Prim minimizes the **total sum of all edge weights** connecting all vertices. Figure 1 provides proof: the MST total weight is 35, but traveling from $A$ to $L$ along the MST costs 24 ($4+3+4+6+4+2+1$). Dijkstra’s shortest route from $A$ to $L$ costs 20, but the total edge weight of the complete SPT rooted at $A$ is 43 ($43 
+e 35$).
 
-**Why a queue for level order?** FIFO processes all earlier-discovered nodes first.
-Deque append and popleft are approximately O(1); list.pop(0) would shift items.
+### Question 3: Why does Level-Order traversal require a FIFO Queue while DFS uses a Stack/Recursion?
+> **Answer**: Depth-First Search (pre, in, post) dives down a branch before backtracking (LIFO), which maps to the call stack. Breadth-First Search (Level-Order) must visit nodes in the exact order they were discovered across horizontal depth levels (FIFO). Using a stack would invert exploration into DFS. We used `collections.deque` because it provides $O(1)$ amortized `popleft()`, avoiding the $O(n)$ element-shifting penalty of Python `list.pop(0)`.
 
-**Is this a binary search tree?** No. The diagram numbers nodes in level order;
-in-order traversal is not a sorted sequence. A binary tree need not satisfy BST ordering.
+### Question 4: What is the recurrence relation and induction proof for Tower of Hanoi?
+> **Answer**: $T(n) = 2T(n-1) + 1$, solving to $2^n - 1$.
+> - **Base Case**: For $n=1$, $2^1 - 1 = 1$ move.
+> - **Inductive Step**: Assume true for $k$: $T(k) = 2^k - 1$. For $k+1$ disks, we move $k$ disks to auxiliary ($T(k)$), move largest disk to target (1 move), then move $k$ disks from auxiliary to target ($T(k)$).
+> - **Total**: $T(k+1) = 2(2^k - 1) + 1 = 2^{k+1} - 2 + 1 = 2^{k+1} - 1$. Q.E.D.
 
-**Is this tree complete/full/perfect?** All three: every level is full, every internal
-node has two children, and leaves are at the same depth. It has 31 nodes, 16 leaves,
-15 internal nodes and height 4 edges (five levels).
+### Question 5: Why is Huffman coding greedy-choice optimal, and what does "prefix-free" guarantee?
+> **Answer**: David Huffman proved in 1952 that an optimal prefix tree must place the two lowest frequency symbols as siblings at maximum depth. Combining them preserves optimal substructure. Because all symbols reside strictly at **leaf nodes** in the binary tree, no code word can possibly be a prefix of another code word. This guarantees instantaneous, unambiguous decoding without delimiters or backtracking.
 
-**Can Huffman codes differ?** Yes. Equal-frequency tie choices or swapping left and
-right branches can change bit strings while preserving optimal weighted length.
-This code uses sorted symbols, heap insertion serial numbers and left=0/right=1.
+### Question 6: Can Dijkstra handle negative edge weights or negative cycles?
+> **Answer**: No. Dijkstra assumes that once a vertex is finalized and popped from the min-heap, its shortest path is permanently determined. A negative edge can later reduce that distance, violating the greedy settlement invariant. Negative cycles cause infinite loops. Handling negative weights requires Bellman-Ford ($O(V \cdot E)$) or Johnson’s algorithm.
 
-**Why can't one code be a prefix of another?** Symbols are assigned only to leaves;
-a leaf cannot be an ancestor of another leaf. This makes decoding unambiguous.
+---
 
-**Does 96 bits mean a full compressed file is 12 bytes?** Only the packed payload
-is 12 bytes. A real format also needs codebook/header information. Printing the
-bits as text is not binary compression and normally uses at least 96 characters.
+## 4. Asymptotic Big-O Complexity Matrix
 
-**Why not give a unique encoded string from frequencies alone?** Frequencies
-provide counts but no symbol order. The grouped example message is explicitly
-chosen for demonstration; every order with those counts has the same bit length.
-
-**Why does Dijkstra reject negative weights?** Its settlement proof requires that
-extending a path cannot reduce its cost. Other algorithms are needed for general
-negative-weight shortest-path problems.
-
-**How is Dijkstra different from Prim?** Dijkstra selects the smallest accumulated
-distance from the source. Prim selects the cheapest edge crossing from its current
-tree to an unvisited vertex. Prim minimizes the tree's total edge weight.
-
-**Can a shortest-path tree fail to be an MST?** Yes. Here the Figure 1 shortest-path
-tree has total weight 43, while the MST weighs 35. The MST path from A to L costs
-24, whereas the shortest path costs 20.
-
-**Why infinity in the matrix?** It means no direct edge. Zero on the diagonal means
-zero cost to the same vertex; a non-edge must not be confused with a zero-weight edge.
-
-**What happens in a disconnected graph?** Dijkstra leaves unreachable distances at
-infinity and reconstruction returns an empty path. This Prim implementation raises
-a clear error because there is no spanning tree connecting every vertex.
-
-**What about complexity with traces?** Core heap graph work is O(E log V) for simple
-connected graphs, but retaining every distance/visited snapshot adds O(V²) time
-and storage. The report separates algorithm cost from educational tracing cost.
-
-## Personal reflection preparation
-
-Discuss only your real experience: what you changed, which tests caught a mistake,
-how you checked an edge weight, and which concept you can now explain more clearly.
-Do not present generated notes as a personal learning history or invent contributions.
+| Problem | Algorithm | Time Complexity | Auxiliary Space | Key Data Structure |
+| :--- | :--- | :--- | :--- | :--- |
+| **Tower of Hanoi** | Recursive Generator | $\Theta(2^n)$ exponential | $O(n)$ call stack | System Call Stack |
+| **Binary Tree** | Pre / In / Postorder | $O(V)$ linear | $O(h)$ height ($5$ frames) | Call Stack (LIFO) |
+| **Binary Tree** | Level-Order BFS | $O(V)$ linear | $O(w)$ max width ($16$ nodes) | `collections.deque` (FIFO) |
+| **Huffman Coding** | Tree Construction | $O(k \log k)$ ($k$ symbols) | $O(k)$ tree nodes | `heapq` Min-Heap |
+| **Huffman Coding** | Encode / Decode | $O(n)$ message length | $O(k)$ codebook | Hash Table / Tree |
+| **Dijkstra** | Shortest Paths | $O((V+E)\log V)$ | $O(V + E)$ | Adjacency List + Min-Heap |
+| **Prim** | Min Spanning Tree | $O((V+E)\log V)$ | $O(V + E)$ | Adjacency List + Min-Heap |

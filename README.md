@@ -8,12 +8,12 @@ exercise in plain language and shows how to run the program.
 - [Beginner walkthrough](START_HERE.md)
 - [Read the full report with diagrams](project.report/report-portable.md)
 - [Printable report PDF](project.report/report.pdf)
-- [Editable 14-slide PowerPoint](project.pptx-slides/presentation.pptx)
+- [Editable 26-slide PowerPoint](project.pptx-slides/presentation.pptx)
 - [Slide-by-slide speaker notes](project.pptx-slides/speaker-notes.md)
-- [Download the complete submission ZIP](https://github.com/Eager1337/dcomp320-final-project/blob/main/submission/DCOMP320_Complete_Project.zip)
+- [Download the complete submission ZIP](https://github.com/Eager1337/Data-Structure/blob/main/submission/DCOMP320_Complete_Project.zip)
 - [Presentation preparation](PRESENTATION_NOTES.md)
 
-Repository: https://github.com/Eager1337/dcomp320-final-project (private).
+Repository: https://github.com/Eager1337/Data-Structure (private).
 The Python source, report, tests, diagrams, screenshots and submission ZIP have
 been uploaded. Your real names/IDs, lecturer collaborator invitation, printing
 and individual presentation still need to be completed.

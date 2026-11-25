@@ -16,7 +16,7 @@
 ## GitHub soft-copy submission
 
 The project and complete submission ZIP have been uploaded to the private repository
-https://github.com/Eager1337/dcomp320-final-project. No lecturer invitation has been sent.
+https://github.com/Eager1337/Data-Structure. No lecturer invitation has been sent.
 The brief requires Python code and a report in a ZIP via GitHub, with the lecturer
 added as a collaborator. Publishing publicly may expose assessment work; use a
 private repository unless your lecturer requires otherwise.
@@ -28,7 +28,7 @@ the lecturer invitation and submitting the repository link. The full instruction
 are retained in case you need to create another copy later.
 
 1. Sign in to your own GitHub account.
-2. Create a repository, for example `dcomp320-final-project`, preferably private.
+2. Create a repository, for example `Data-Structure`, preferably private.
 3. Extract the supplied ZIP and upload its source, tests, documentation, report
    folder and outputs, preserving folder structure. Do not upload Python caches.
 4. Upload the original ZIP as well, or attach it to a repository release, to satisfy
@@ -53,7 +53,7 @@ git init
 git add .
 git commit -m "Complete DCOMP320 algorithms, report and tests"
 git branch -M main
-git remote add origin https://github.com/YOUR_USERNAME/dcomp320-final-project.git
+git remote add origin https://github.com/YOUR_USERNAME/Data-Structure.git
 git push -u origin main
 ```
 
